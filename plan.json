@@ -1,0 +1,183 @@
+{
+  "format_version": "0.1",
+  "terraform_version": "0.13.5",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "google_cloud_run_service.my-service",
+          "mode": "managed",
+          "type": "google_cloud_run_service",
+          "name": "my-service",
+          "provider_name": "registry.terraform.io/hashicorp/google",
+          "schema_version": 1,
+          "values": {
+            "autogenerate_revision_name": false,
+            "location": "us-central1",
+            "name": "my-service",
+            "template": [
+              {
+                "spec": [
+                  {
+                    "containers": [
+                      {
+                        "args": null,
+                        "command": null,
+                        "env": [],
+                        "env_from": [],
+                        "image": "gcr.io/cloudrun/hello",
+                        "working_dir": null
+                      }
+                    ],
+                    "service_account_name": null
+                  }
+                ]
+              }
+            ],
+            "timeouts": null,
+            "traffic": [
+              {
+                "latest_revision": true,
+                "percent": 100,
+                "revision_name": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "google_cloud_run_service.my-service",
+      "mode": "managed",
+      "type": "google_cloud_run_service",
+      "name": "my-service",
+      "provider_name": "registry.terraform.io/hashicorp/google",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "autogenerate_revision_name": false,
+          "location": "us-central1",
+          "name": "my-service",
+          "template": [
+            {
+              "spec": [
+                {
+                  "containers": [
+                    {
+                      "args": null,
+                      "command": null,
+                      "env": [],
+                      "env_from": [],
+                      "image": "gcr.io/cloudrun/hello",
+                      "working_dir": null
+                    }
+                  ],
+                  "service_account_name": null
+                }
+              ]
+            }
+          ],
+          "timeouts": null,
+          "traffic": [
+            {
+              "latest_revision": true,
+              "percent": 100,
+              "revision_name": null
+            }
+          ]
+        },
+        "after_unknown": {
+          "id": true,
+          "metadata": true,
+          "project": true,
+          "status": true,
+          "template": [
+            {
+              "metadata": true,
+              "spec": [
+                {
+                  "container_concurrency": true,
+                  "containers": [
+                    {
+                      "env": [],
+                      "env_from": [],
+                      "ports": true,
+                      "resources": true
+                    }
+                  ],
+                  "serving_state": true,
+                  "timeout_seconds": true
+                }
+              ]
+            }
+          ],
+          "traffic": [
+            {}
+          ]
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "provider_config": {
+      "google": {
+        "name": "google",
+        "expressions": {
+          "project": {
+            "constant_value": "camargue-0001"
+          }
+        }
+      }
+    },
+    "root_module": {
+      "resources": [
+        {
+          "address": "google_cloud_run_service.my-service",
+          "mode": "managed",
+          "type": "google_cloud_run_service",
+          "name": "my-service",
+          "provider_config_key": "google",
+          "expressions": {
+            "location": {
+              "constant_value": "us-central1"
+            },
+            "name": {
+              "constant_value": "my-service"
+            },
+            "template": [
+              {
+                "spec": [
+                  {
+                    "containers": [
+                      {
+                        "image": {
+                          "constant_value": "gcr.io/cloudrun/hello"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "traffic": [
+              {
+                "latest_revision": {
+                  "constant_value": true
+                },
+                "percent": {
+                  "constant_value": 100
+                }
+              }
+            ]
+          },
+          "schema_version": 1
+        }
+      ]
+    }
+  }
+}

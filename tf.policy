@@ -1,0 +1,41 @@
+//check the tf version
+allowed_tf_versions = [
+	"0.13.5",
+]
+tf_version = rule {
+	input.terraform_version in allowed_tf_versions
+}
+
+//check the container change location and the container image
+allowed_location = func() {
+    for input.resource_changes as change {
+       if change.change.after.location contains "us-central1"{
+            print("valid location")
+            return(true)
+       }
+       return(false)
+    }
+}
+
+allowed_containers = [
+    "gcr.io/cloudrun/hello",
+]
+allowed_container = func() {
+	for input.configuration.root_module.resources as resource {
+	    for resource.expressions.template as template {
+	       for template.spec as spec {
+	          for spec.containers as containers {
+	                if containers.image.constant_value in allowed_containers {
+			        return (true)
+		         }
+		         return (false)
+	          }
+	       }
+	    }
+	}
+}
+
+///////////This the main to run all methods or rules
+main = rule {
+	tf_version and allowed_location() and allowed_container()
+}
